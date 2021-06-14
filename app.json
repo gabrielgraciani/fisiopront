@@ -1,0 +1,12 @@
+{
+  "name": "fisiopront",
+  "displayName": "fisiopront",
+  "expo": {
+    "name": "fisiopront",
+    "slug": "fisiopront",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
