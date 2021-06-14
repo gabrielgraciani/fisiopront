@@ -9,8 +9,9 @@ import {
 import AppLoading from 'expo-app-loading';
 import { ThemeProvider } from 'styled-components';
 
-import { Home } from './src/pages/Home';
 import theme from './src/styles/theme';
+
+import { Routes } from './src/routes';
 
 export default function App(): ReactElement {
   const [fontsLoaded] = useFonts({
@@ -26,7 +27,7 @@ export default function App(): ReactElement {
 
   return (
     <ThemeProvider theme={theme}>
-      <Home />
+      <Routes />
     </ThemeProvider>
   );
 }
