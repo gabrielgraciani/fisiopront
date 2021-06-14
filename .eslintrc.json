@@ -49,7 +49,10 @@
           "tsx": "never"
         }
       ],
-      "prettier/prettier": "error"
+      "prettier/prettier": "error",
+      "import/prefer-default-export": "off",
+      "@typescript-eslint/no-empty-interface": "off",
+      "camelcase": "off"
     },
     "settings": {
       "import/resolver": {
