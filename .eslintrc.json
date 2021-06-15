@@ -52,7 +52,9 @@
       "prettier/prettier": "error",
       "import/prefer-default-export": "off",
       "@typescript-eslint/no-empty-interface": "off",
-      "camelcase": "off"
+      "camelcase": "off",
+      "react/jsx-props-no-spreading": "off",
+      "react/require-default-props": "off"
     },
     "settings": {
       "import/resolver": {
