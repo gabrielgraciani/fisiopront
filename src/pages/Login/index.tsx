@@ -1,5 +1,7 @@
 import React from 'react';
 import { RFValue } from 'react-native-responsive-fontsize';
+import { useNavigation } from '@react-navigation/native';
+import { StatusBar } from 'react-native';
 
 import Logo from '../../assets/logo.svg';
 import AppleSvg from '../../assets/apple.svg';
@@ -21,8 +23,20 @@ import {
 } from './styles';
 
 export function Login(): JSX.Element {
+  const navigation = useNavigation();
+
+  function handleNavigateToRegister() {
+    navigation.navigate('SignIn');
+  }
+
   return (
     <Container>
+      <StatusBar
+        barStyle="light-content"
+        translucent
+        backgroundColor="transparent"
+      />
+
       <Logo width={RFValue(250)} height={RFValue(250)} />
 
       <ContentContainer>
@@ -34,10 +48,7 @@ export function Login(): JSX.Element {
 
         <ActionsContainer>
           <ButtonsContainer>
-            <Button
-              title="Registrar"
-              onPress={() => console.log('navigate to register page')}
-            />
+            <Button title="Registrar" onPress={handleNavigateToRegister} />
 
             <SignInSocialButton
               title="Entrar com Google"
