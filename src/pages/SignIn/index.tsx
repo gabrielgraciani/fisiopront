@@ -1,20 +1,50 @@
-import React from 'react';
-import { StatusBar } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import React, { useState } from 'react';
+import { RFValue } from 'react-native-responsive-fontsize';
+import { ActivityIndicator, Alert, StatusBar, Platform } from 'react-native';
 import { useTheme } from 'styled-components';
 
-import { BackButton } from '../../components/BackButton';
-import { Button } from '../../components/Button';
-import { Input } from '../../components/Form/Input';
+import Logo from '../../assets/logo.svg';
+import AppleSvg from '../../assets/apple.svg';
+import GoogleSvg from '../../assets/google.svg';
 
-import { Container, Greeting, Text, FormContainer } from './styles';
+import { useAuth } from '../../hooks/auth';
+
+import { SignInSocialButton } from '../../components/SignInSocialButton';
+
+import {
+  Container,
+  ContentContainer,
+  Title,
+  SubTitle,
+  ButtonsContainer,
+  LoadingContainer,
+} from './styles';
 
 export function SignIn(): JSX.Element {
-  const navigation = useNavigation();
+  const [isLoading, setIsLoading] = useState(false);
+  const { signInWithGoogle, signInWithApple } = useAuth();
   const theme = useTheme();
 
-  function handleGoBack() {
-    navigation.goBack();
+  async function handleSignInWithGoogle() {
+    try {
+      setIsLoading(true);
+      await signInWithGoogle();
+    } catch (err) {
+      Alert.alert('Ocurreu um erro ao tentar se autenticar!');
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
+  async function handleSignInWithApple() {
+    try {
+      setIsLoading(true);
+      await signInWithApple();
+    } catch (err) {
+      Alert.alert('Ocurreu um erro ao tentar se autenticar!');
+    } finally {
+      setIsLoading(false);
+    }
   }
 
   return (
@@ -25,23 +55,35 @@ export function SignIn(): JSX.Element {
         backgroundColor="transparent"
       />
 
-      <BackButton onPress={handleGoBack} />
+      <Logo width={RFValue(250)} height={RFValue(250)} />
 
-      <Greeting>Olá,</Greeting>
+      <ContentContainer>
+        <Title>fisioPront</Title>
+        <SubTitle>
+          Seu prontuário de bolso, feito {'\n'}
+          para te ajudar!
+        </SubTitle>
 
-      <Text>
-        Que legal que você vai usar o fisioPront! Só mais essa etapa para você
-        ter acesso ao seu prontuário de bolso! ;)
-      </Text>
+        <ButtonsContainer>
+          <SignInSocialButton
+            title="Entrar com Google"
+            svg={GoogleSvg}
+            onPress={handleSignInWithGoogle}
+          />
 
-      <FormContainer>
-        <Input />
-        <Button
-          title="Registrar"
-          onPress={() => console.log('register')}
-          color={theme.colors.secondary}
-        />
-      </FormContainer>
+          {Platform.OS === 'ios' && (
+            <SignInSocialButton
+              title="Entrar com Apple"
+              svg={AppleSvg}
+              onPress={handleSignInWithApple}
+            />
+          )}
+
+          <LoadingContainer>
+            {isLoading && <ActivityIndicator color={theme.colors.shape} />}
+          </LoadingContainer>
+        </ButtonsContainer>
+      </ContentContainer>
     </Container>
   );
 }

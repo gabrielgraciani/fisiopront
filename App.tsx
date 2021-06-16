@@ -9,6 +9,8 @@ import {
 import AppLoading from 'expo-app-loading';
 import { ThemeProvider } from 'styled-components';
 
+import { AuthProvider, useAuth } from './src/hooks/auth';
+
 import theme from './src/styles/theme';
 
 import { Routes } from './src/routes';
@@ -21,13 +23,17 @@ export default function App(): ReactElement {
     Ubuntu_700Bold,
   });
 
-  if (!fontsLoaded) {
+  const { userStorageLoading } = useAuth();
+
+  if (!fontsLoaded || userStorageLoading) {
     return <AppLoading />;
   }
 
   return (
     <ThemeProvider theme={theme}>
-      <Routes />
+      <AuthProvider>
+        <Routes />
+      </AuthProvider>
     </ThemeProvider>
   );
 }

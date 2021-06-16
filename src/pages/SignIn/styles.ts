@@ -3,27 +3,41 @@ import styled from 'styled-components/native';
 
 export const Container = styled.View`
   flex: 1;
+  align-items: center;
   background: ${({ theme }) => theme.colors.main};
-
-  padding: 40px 32px 16px;
+  padding-top: ${RFValue(40)}px;
 `;
 
-export const Greeting = styled.Text`
-  margin-top: 24px;
-  color: ${({ theme }) => theme.colors.text};
-  font-family: ${({ theme }) => theme.fonts.primary_500};
-  font-size: ${RFValue(42)}px;
-`;
-
-export const Text = styled.Text`
-  margin-top: 12px;
-  color: ${({ theme }) => theme.colors.text_opacity65};
-  font-family: ${({ theme }) => theme.fonts.primary_400};
-  font-size: ${RFValue(18)}px;
-`;
-
-export const FormContainer = styled.View`
+export const ContentContainer = styled.View`
+  width: 100%;
+  padding: 0 32px 16px;
   flex: 1;
-  margin-top: 24px;
+  align-items: center;
   justify-content: space-between;
+`;
+
+export const Title = styled.Text`
+  font-size: ${RFValue(32)}px;
+  color: ${({ theme }) => theme.colors.shape};
+  font-family: ${({ theme }) => theme.fonts.primary_500};
+`;
+
+export const SubTitle = styled.Text`
+  margin-top: 26px;
+  font-size: ${RFValue(22)}px;
+  color: ${({ theme }) => theme.colors.text};
+  font-family: ${({ theme }) => theme.fonts.primary_400};
+  text-align: center;
+`;
+
+export const ButtonsContainer = styled.View`
+  width: 100%;
+  flex: 1;
+  justify-content: flex-end;
+  margin-bottom: ${RFValue(60)}px;
+`;
+
+export const LoadingContainer = styled.View`
+  margin-top: 20px;
+  height: 20px;
 `;
