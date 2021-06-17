@@ -9,6 +9,8 @@ export default {
 
     text: '#FAFAFA',
     text_opacity65: 'rgba(250, 250, 250, 0.65)',
+
+    attention: '#E83F5B',
   },
   fonts: {
     primary_300: 'Ubuntu_300Light',
