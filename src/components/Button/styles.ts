@@ -4,11 +4,12 @@ import styled from 'styled-components/native';
 
 interface ButtonProps extends RectButtonProps {
   color?: string;
+  size?: 'small' | 'normal';
 }
 
 export const Container = styled(RectButton)<ButtonProps>`
   width: 100%;
-  padding: 19px;
+  padding: ${props => (props.size === 'small' ? '12px' : '18px')};
   align-items: center;
   justify-content: center;
   background-color: ${({ color, theme }) => color || theme.colors.primary};
