@@ -1,18 +1,24 @@
 import React from 'react';
-import { StatusBar, TouchableWithoutFeedback } from 'react-native';
+import { TouchableWithoutFeedback } from 'react-native';
 import { Entypo, FontAwesome } from '@expo/vector-icons';
 import { HeaderContainer, HeaderTextContainer, HeaderText, MenuButton, TopHeader, BottomHeader, TextInput, SearchIcon } from './styles'
 
-export function Header() {
+import { useAuth } from '../../hooks/auth';
+
+export function Header( { navigation }: any ) {
+
+    const { user } = useAuth();
+    const userName = user.name.split(' ')[0] // Pega só a primeira palavra do nome
+
     return(
         <HeaderContainer>
             <TopHeader>
             <HeaderTextContainer>
                 <HeaderText>Olá,</HeaderText>
-                <HeaderText>Fernanda!</HeaderText>
+                <HeaderText>{userName}!</HeaderText>
             </HeaderTextContainer>
             <MenuButton>
-                <TouchableWithoutFeedback>
+                <TouchableWithoutFeedback onPress={() =>  navigation.openDrawer() }>
                 <Entypo name="menu" size={32} color="#fafafa" />
                 </TouchableWithoutFeedback>
             </MenuButton>
