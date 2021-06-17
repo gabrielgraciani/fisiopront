@@ -7,6 +7,8 @@ export const HeaderContainer = styled.View`
   display: flex;
   flex-direction: column;
   border-radius: 30px;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
 
 `
 

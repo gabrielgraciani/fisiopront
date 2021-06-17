@@ -3,7 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 
 import { useAuth } from '../hooks/auth';
 
-import { StackRoutes } from './stack.routes';
+import { DrawerRoutes } from './drawer.routes';
 import { AuthRoutes } from './auth.routes';
 
 export function Routes(): JSX.Element {
@@ -11,7 +11,7 @@ export function Routes(): JSX.Element {
 
   return (
     <NavigationContainer>
-      {user.id ? <StackRoutes /> : <AuthRoutes />}
+      {user.id ? <DrawerRoutes /> : <AuthRoutes />}
     </NavigationContainer>
   );
 }

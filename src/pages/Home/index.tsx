@@ -1,66 +1,42 @@
 import React from 'react';
 import { StatusBar, TouchableWithoutFeedback } from 'react-native';
-import { Header } from '../../components/Header'
+import { Header } from '../../components/Header';
+import { Scales } from '../../components/Scales';
 
-import { Container, Text,  Main, ScalesContainer, MainTitle, Scale, ScaleTitle, PatientsContainer, Patient, PatientTitle, AddPatientButton, AddPatientIcon } from './styles';
- 
-export function Home(): JSX.Element {
+import AddButton from '../../assets/addButton.png';
+
+import {
+  Container,
+  Main,
+  MainTitle,
+  PatientsContainer,
+  Patient,
+  PatientTitle,
+  AddPatientButton,
+  AddPatientIcon,
+} from './styles';
+
+export function Home({ navigation }: any): JSX.Element {
   return (
     <Container>
-      <Header/>
+      <Header navigation={navigation} />
       <StatusBar
         barStyle="light-content"
         translucent
         backgroundColor="transparent"
-      />  
+      />
       <Main>
-        <ScalesContainer>
-          <MainTitle>
-            Escalas e índices
-          </MainTitle>
-          <TouchableWithoutFeedback>
-            <Scale>
-                <ScaleTitle>
-                  MOBILITY SCALE
-                </ScaleTitle>
-            </Scale>
-          </TouchableWithoutFeedback>
-          <TouchableWithoutFeedback>
-            <Scale>
-                <ScaleTitle>
-                  ÍNDICE DE BARTHEL
-                </ScaleTitle>
-            </Scale>
-          </TouchableWithoutFeedback>
-          <TouchableWithoutFeedback>
-            <Scale>
-                <ScaleTitle>
-                  ESCALA DE MRC
-                </ScaleTitle>
-            </Scale>
-          </TouchableWithoutFeedback>
-          <TouchableWithoutFeedback>
-            <Scale>
-                <ScaleTitle>
-                  ÍNDICE DE HACOR
-                </ScaleTitle>
-            </Scale>
-          </TouchableWithoutFeedback>
-        </ScalesContainer>
+        <Scales navigation={navigation} />
         <PatientsContainer>
-          <MainTitle>
-            Pacientes
-          </MainTitle>
+          <MainTitle>Pacientes</MainTitle>
           <TouchableWithoutFeedback>
             <Patient>
-                <PatientTitle>
-                  A.R.U
-                </PatientTitle>
+              <PatientTitle>A.R.U</PatientTitle>
             </Patient>
           </TouchableWithoutFeedback>
           <AddPatientButton>
             <TouchableWithoutFeedback>
-              <AddPatientIcon source={require('../../assets/addButton.png')}/>
+              <AddPatientIcon source={AddButton} />
             </TouchableWithoutFeedback>
           </AddPatientButton>
         </PatientsContainer>
