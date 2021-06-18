@@ -1,5 +1,4 @@
 import styled from 'styled-components/native';
-import { Scale, ScaleTitle } from '../../components/Scales/styles'
 
 export const Container = styled.View`
   flex: 1;
@@ -26,32 +25,5 @@ export const MainTitle = styled.Text`
 
 `
 
-export const PatientsContainer = styled.View `
-  margin-top: 20px; 
-  margin-left: 35px;
-  margin-right: 35px;
-
-`
-
-export const Patient = styled(Scale)`
 
 
-`
-
-export const PatientTitle = styled(ScaleTitle)`
-
-`
-
-export const AddPatientButton = styled.View`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  
-`
-
-
-export const AddPatientIcon = styled.Image`
-  width: 50px;
-  height: 50px;
-  
-`
