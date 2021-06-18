@@ -77,7 +77,7 @@ export function CreatePatient(): JSX.Element {
 
       reset();
 
-      navigation.navigate('Home');
+      navigation.navigate('Ínicio');
     } catch (err) {
       Alert.alert('Erro ao tentar criar um paciente!');
     }
