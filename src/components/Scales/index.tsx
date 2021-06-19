@@ -17,7 +17,7 @@ export function Scales( { navigation }: any ): JSX.Element{
                 </ScaleTitle>
             </Scale>
           </TouchableWithoutFeedback>
-          <TouchableWithoutFeedback>
+          <TouchableWithoutFeedback onPress={() => navigation.navigate('Índice de Barthel')}>
             <Scale>
                 <ScaleTitle>
                   ÍNDICE DE BARTHEL

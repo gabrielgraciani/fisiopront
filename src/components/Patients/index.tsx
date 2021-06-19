@@ -34,6 +34,10 @@ export function Patients( { navigation }: any ): JSX.Element {
 
   useEffect(() => {
     loadPatientStorageData()
+  }, [ patients ])
+
+  useEffect(() => {
+    loadPatientStorageData()
   }, [])
 
   function deletePatient(id: string) {
