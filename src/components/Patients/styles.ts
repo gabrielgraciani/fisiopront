@@ -1,24 +1,21 @@
-import styled from 'styled-components/native'
+import styled from 'styled-components/native';
 
 export const PatientsContainer = styled.View`
-    margin-top: 25px;
-    margin-left: 35px;
-    margin-right: 35px; 
-`
+  margin-top: 25px;
+  margin-left: 35px;
+  margin-right: 35px;
+`;
 
 export const MainTitle = styled.Text`
-
   color: black;
   font-size: 24px;
   font-family: ${({ theme }) => theme.fonts.primary_500};
 
   margin-bottom: 15px;
-
-`
+`;
 
 export const Patient = styled.View`
-
-  background-color: #408DC5;
+  background-color: ${({ theme }) => theme.colors.secondary};
   height: 50px;
   border-radius: 15px;
 
@@ -30,15 +27,13 @@ export const Patient = styled.View`
   align-items: center;
   padding-left: 30px;
   padding-right: 30px;
-
-`
+`;
 export const PatientTitle = styled.Text`
-  color: #fafafa;
+  color: ${({ theme }) => theme.colors.text};
 
   font-size: 20px;
   font-family: ${({ theme }) => theme.fonts.primary_500};
-
-`
+`;
 
 export const AddPatientButton = styled.View`
   display: flex;
@@ -46,12 +41,9 @@ export const AddPatientButton = styled.View`
   align-items: center;
 
   margin-bottom: 40px;
-  
-`
-
+`;
 
 export const AddPatientIcon = styled.Image`
   width: 50px;
   height: 50px;
-  
-`
+`;

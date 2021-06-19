@@ -1,6 +1,9 @@
 import React from 'react';
 import { TouchableWithoutFeedback } from 'react-native';
 import { Entypo, FontAwesome } from '@expo/vector-icons';
+import { DrawerActions, useNavigation } from '@react-navigation/native';
+import { useTheme } from 'styled-components';
+
 import {
   HeaderContainer,
   HeaderTextContainer,
@@ -14,9 +17,15 @@ import {
 
 import { useAuth } from '../../hooks/auth';
 
-export function Header({ navigation }: any) {
+export function Header(): JSX.Element {
   const { user } = useAuth();
+  const theme = useTheme();
   const userName = user.name.split(' ')[0]; // Pega só a primeira palavra do nome
+  const navigation = useNavigation();
+
+  function handleOpenDrawer() {
+    navigation.dispatch(DrawerActions.openDrawer());
+  }
 
   return (
     <HeaderContainer>
@@ -26,16 +35,19 @@ export function Header({ navigation }: any) {
           <HeaderText>{userName}!</HeaderText>
         </HeaderTextContainer>
         <MenuButton>
-          <TouchableWithoutFeedback onPress={() => navigation.openDrawer()}>
-            <Entypo name="menu" size={32} color="#fafafa" />
+          <TouchableWithoutFeedback onPress={handleOpenDrawer}>
+            <Entypo name="menu" size={32} color={theme.colors.shape} />
           </TouchableWithoutFeedback>
         </MenuButton>
       </TopHeader>
       <BottomHeader>
         <SearchIcon>
-          <FontAwesome name="search" size={24} color="#fafafa" />
+          <FontAwesome name="search" size={24} color={theme.colors.secondary} />
         </SearchIcon>
-        <TextInput placeholder="Procurar" placeholderTextColor="#fafafa" />
+        <TextInput
+          placeholder="Procurar"
+          placeholderTextColor={theme.colors.secondary}
+        />
       </BottomHeader>
     </HeaderContainer>
   );
