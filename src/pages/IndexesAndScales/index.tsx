@@ -1,15 +1,15 @@
-import React from 'react'
+import React from 'react';
 
-import { Header } from '../../components/Header'
-import { Scales } from '../../components/Scales'
+import { Header } from '../../components/Header';
+import { Scales } from '../../components/Scales';
 
-import { Container } from './styles'
+import { Container } from './styles';
 
-export function IndexesAndScales( { navigation }: any ): JSX.Element {
-    return (
-        <Container>
-            <Header navigation={navigation}/>
-            <Scales navigation={navigation} />
-        </Container>
-    )
+export function IndexesAndScales(): JSX.Element {
+  return (
+    <Container>
+      <Header />
+      <Scales />
+    </Container>
+  );
 }

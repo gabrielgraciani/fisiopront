@@ -12,6 +12,8 @@ import { BackButton } from '../../components/BackButton';
 import { Button } from '../../components/Button';
 import { InputForm } from '../../components/Form/InputForm';
 
+import { IPatient } from '../../domains/Patient';
+
 import { useAuth } from '../../hooks/auth';
 
 import {
@@ -23,14 +25,6 @@ import {
   ObservationsContainer,
   ObservationsTitle,
 } from './styles';
-
-interface FormData {
-  name: string;
-  reason: string;
-  hda: string;
-  hpp: string;
-  observations?: string;
-}
 
 const schema = Yup.object().shape({
   name: Yup.string().required('Informe o nome!'),
@@ -57,7 +51,7 @@ export function CreatePatient(): JSX.Element {
     navigation.goBack();
   }
 
-  async function handleRegister(form: FormData) {
+  async function handleRegister(form: Omit<IPatient, 'id'>) {
     const newPatient = {
       id: String(uuid.v4()),
       name: form.name,
@@ -77,7 +71,7 @@ export function CreatePatient(): JSX.Element {
 
       reset();
 
-      navigation.navigate('Ínicio');
+      navigation.navigate('Home');
     } catch (err) {
       Alert.alert('Erro ao tentar criar um paciente!');
     }
