@@ -1,17 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { useTheme } from 'styled-components';
 import { ScrollView, TouchableWithoutFeedback } from 'react-native';
 import Modal from 'react-native-modal';
-import { AntDesign, MaterialIcons } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
 
+import { Accordion } from '../../../components/Accordion';
 import { IndexHeader } from '../../../components/IndexHeader';
 
 import {
   IndexContainer,
-  Title,
   AccordionContainer,
-  AccordionTitle,
-  Accordion,
   ModalContent,
   AnswerTitle,
   SelectAnswerButton,
@@ -21,8 +18,6 @@ import {
 } from './styles';
 
 export function BarthelIndex(): JSX.Element {
-  const theme = useTheme();
-
   const [alimentationScore, setAlimentationScore] = useState({} as number);
   const [bathScore, setBathScore] = useState({} as number);
   const [routineScore, setRoutineScore] = useState({} as number);
@@ -89,72 +84,36 @@ export function BarthelIndex(): JSX.Element {
       <ScrollView>
         <IndexHeader indexName="Índice de Barthel" />
         <AccordionContainer>
-          <Title>Alimentação</Title>
-          <Accordion>
-            <AccordionTitle>
-              {alimentationScore >= 0
-                ? `Score ${alimentationScore}`
-                : 'Selecione um valor'}
-            </AccordionTitle>
-            <TouchableWithoutFeedback
-              onPress={() => toggleModal('alimentation')}
-            >
-              <AntDesign name="down" size={24} color={theme.colors.text} />
-            </TouchableWithoutFeedback>
-          </Accordion>
-          <Title>Banho</Title>
-          <Accordion>
-            <AccordionTitle>
-              {bathScore >= 0 ? `Score ${bathScore}` : 'Selecione um valor'}
-            </AccordionTitle>
-            <TouchableWithoutFeedback onPress={() => toggleModal('bath')}>
-              <AntDesign name="down" size={24} color={theme.colors.text} />
-            </TouchableWithoutFeedback>
-          </Accordion>
-          <Title>Atividades rotineiras</Title>
-          <Accordion>
-            <AccordionTitle>
-              {routineScore >= 0
-                ? `Score ${routineScore}`
-                : 'Selecione um valor'}
-            </AccordionTitle>
-            <TouchableWithoutFeedback onPress={() => toggleModal('routine')}>
-              <AntDesign name="down" size={24} color={theme.colors.text} />
-            </TouchableWithoutFeedback>
-          </Accordion>
-          <Title>Vestir-se</Title>
-          <Accordion>
-            <AccordionTitle>
-              {dressUpScore >= 0
-                ? `Score ${dressUpScore}`
-                : 'Selecione um valor'}
-            </AccordionTitle>
-            <TouchableWithoutFeedback onPress={() => toggleModal('dressUp')}>
-              <AntDesign name="down" size={24} color={theme.colors.text} />
-            </TouchableWithoutFeedback>
-          </Accordion>
-          <Title>Intestino</Title>
-          <Accordion>
-            <AccordionTitle>
-              {intestineScore >= 0
-                ? `Score ${intestineScore}`
-                : 'Selecione um valor'}
-            </AccordionTitle>
-            <TouchableWithoutFeedback onPress={() => toggleModal('intestine')}>
-              <AntDesign name="down" size={24} color={theme.colors.text} />
-            </TouchableWithoutFeedback>
-          </Accordion>
-          <Title>Sistema urinário</Title>
-          <Accordion>
-            <AccordionTitle>
-              {urinaryScore >= 0
-                ? `Score ${urinaryScore}`
-                : 'Selecione um valor'}
-            </AccordionTitle>
-            <TouchableWithoutFeedback onPress={() => toggleModal('urinary')}>
-              <AntDesign name="down" size={24} color={theme.colors.text} />
-            </TouchableWithoutFeedback>
-          </Accordion>
+          <Accordion
+            title="Alimentação"
+            onPress={() => toggleModal('alimentation')}
+            value={alimentationScore}
+          />
+          <Accordion
+            title="Banho"
+            onPress={() => toggleModal('bath')}
+            value={bathScore}
+          />
+          <Accordion
+            title="Atividades rotineiras"
+            onPress={() => toggleModal('routine')}
+            value={routineScore}
+          />
+          <Accordion
+            title="Vestir-se"
+            onPress={() => toggleModal('dressUp')}
+            value={dressUpScore}
+          />
+          <Accordion
+            title="Intestino"
+            onPress={() => toggleModal('intestine')}
+            value={intestineScore}
+          />
+          <Accordion
+            title="Sistema urinário"
+            onPress={() => toggleModal('urinary')}
+            value={urinaryScore}
+          />
 
           <ScoreResultContainer>
             <ScoreText>SCORE</ScoreText>
