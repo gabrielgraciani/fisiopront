@@ -1,7 +1,7 @@
 import styled from 'styled-components/native';
 
 export const HeaderContainer = styled.View`
-  background: #267ebe;
+  background: ${({ theme }) => theme.colors.main};
   height: 260px;
 
   display: flex;
@@ -33,8 +33,8 @@ export const TextInput = styled.TextInput`
   padding-left: 10%;
   margin-bottom: 25px;
 
-  background-color: #408dc5;
-  color: #fafafa;
+  background-color: ${({ theme }) => theme.colors.secondary};
+  color: ${({ theme }) => theme.colors.text};
 
   font-family: ${({ theme }) => theme.fonts.primary_500};
 `;
@@ -44,7 +44,7 @@ export const SearchIcon = styled.View`
 `;
 
 export const HeaderTextContainer = styled.View`
-  color: #fafafa;
+  color: ${({ theme }) => theme.colors.text};
   font-size: 32px;
   font-family: ${({ theme }) => theme.fonts.primary_500};
 
@@ -53,7 +53,7 @@ export const HeaderTextContainer = styled.View`
 `;
 
 export const HeaderText = styled.Text`
-  color: #fafafa;
+  color: ${({ theme }) => theme.colors.text};
 
   font-size: 32px;
   font-family: ${({ theme }) => theme.fonts.primary_500};

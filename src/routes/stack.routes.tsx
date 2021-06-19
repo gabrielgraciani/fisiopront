@@ -13,7 +13,7 @@ const { Navigator, Screen } = createStackNavigator();
 
 export function StackRoutes(): JSX.Element {
   return (
-    <Navigator headerMode="none" initialRouteName="Splash">
+    <Navigator headerMode="none" initialRouteName="Home">
       <Screen name="Splash" component={Splash} />
       <Screen name="Home" component={Home} />
       <Screen name="CreatePatient" component={CreatePatient} />

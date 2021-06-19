@@ -56,8 +56,6 @@ export function CreatePatient(): JSX.Element {
       id: String(uuid.v4()),
       name: form.name,
       reason: form.reason,
-      hda: form.hda,
-      hpp: form.hpp,
       observations: form.observations,
     };
 

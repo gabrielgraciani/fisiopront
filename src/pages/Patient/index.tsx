@@ -45,14 +45,6 @@ export function Patient(): JSX.Element {
             <DataText>M.I</DataText>
             <DataText>{patient.reason}</DataText>
           </Data>
-          <Data>
-            <DataText>HDA</DataText>
-            <DataText>{patient.hda}</DataText>
-          </Data>
-          <Data>
-            <DataText>HPP</DataText>
-            <DataText>{patient.hpp}</DataText>
-          </Data>
         </DataContainer>
       </Main>
     </Container>

@@ -36,7 +36,7 @@ export function Header(): JSX.Element {
         </HeaderTextContainer>
         <MenuButton>
           <TouchableWithoutFeedback onPress={handleOpenDrawer}>
-            <Entypo name="menu" size={32} color={theme.colors.secondary} />
+            <Entypo name="menu" size={32} color={theme.colors.shape} />
           </TouchableWithoutFeedback>
         </MenuButton>
       </TopHeader>
