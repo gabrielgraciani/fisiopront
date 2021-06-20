@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { ScrollView } from 'react-native';
-import Modal from 'react-native-modal'
+import Modal from 'react-native-modal';
 
 import { Accordion } from '../../../components/Accordion';
 import { IndexHeader } from '../../../components/IndexHeader';
@@ -24,7 +24,8 @@ export function BarthelIndex(): JSX.Element {
 
   const [barthelScore, setBarthelScore] = useState(0);
 
-  const [isAlimentationModalVisible, setAlimentationModalVisible] = useState(false);
+  const [isAlimentationModalVisible, setAlimentationModalVisible] =
+    useState(false);
   const [isBathModalVisible, setBathModalVisible] = useState(false);
   const [isRoutineModalVisible, setRoutineModalVisible] = useState(false);
   const [isDressUpModalVisible, setDressUpModalVisible] = useState(false);
@@ -123,20 +124,28 @@ export function BarthelIndex(): JSX.Element {
             onBackdropPress={() => setAlimentationModalVisible(false)}
           >
             <ModalContent>
-              <ScaleAnswerModal answerTitle='Incapacitado' onPress={
-                () => {
-                    toggleModal('alimentation');
-                    setAlimentationScore(0);
-              }} />
-              <ScaleAnswerModal answerTitle='Precisa de ajuda para cortar, passar manteiga, etc, ou dieta
-                  modificada' onPress={() => {
-                    toggleModal('alimentation');
-                    setAlimentationScore(5);
-                  }}/>
-                <ScaleAnswerModal answerTitle='Independente' onPress={() => {
-                    toggleModal('alimentation');
-                    setAlimentationScore(10);
-                  }} />
+              <ScaleAnswerModal
+                answerTitle="Incapacitado"
+                onPress={() => {
+                  toggleModal('alimentation');
+                  setAlimentationScore(0);
+                }}
+              />
+              <ScaleAnswerModal
+                answerTitle="Precisa de ajuda para cortar, passar manteiga, etc, ou dieta
+                  modificada"
+                onPress={() => {
+                  toggleModal('alimentation');
+                  setAlimentationScore(5);
+                }}
+              />
+              <ScaleAnswerModal
+                answerTitle="Independente"
+                onPress={() => {
+                  toggleModal('alimentation');
+                  setAlimentationScore(10);
+                }}
+              />
             </ModalContent>
           </Modal>
 
@@ -145,17 +154,22 @@ export function BarthelIndex(): JSX.Element {
             style={{ margin: 0 }}
             onBackdropPress={() => setBathModalVisible(false)}
           >
-              <ModalContent>
-                  <ScaleAnswerModal answerTitle='Dependente' onPress={
-                    () => {
-                        toggleModal('bath');
-                        setBathScore(0);
-                  }} />
-                  <ScaleAnswerModal answerTitle='Independente (ou no chuveiro)' onPress={() => {
-                        toggleModal('bath');
-                        setBathScore(5);
-                      }}/>
-              </ModalContent>
+            <ModalContent>
+              <ScaleAnswerModal
+                answerTitle="Dependente"
+                onPress={() => {
+                  toggleModal('bath');
+                  setBathScore(0);
+                }}
+              />
+              <ScaleAnswerModal
+                answerTitle="Independente (ou no chuveiro)"
+                onPress={() => {
+                  toggleModal('bath');
+                  setBathScore(5);
+                }}
+              />
+            </ModalContent>
           </Modal>
 
           <Modal
@@ -164,15 +178,20 @@ export function BarthelIndex(): JSX.Element {
             onBackdropPress={() => setRoutineModalVisible(false)}
           >
             <ModalContent>
-                <ScaleAnswerModal answerTitle='Precisa de ajuda com a higiene pessoal' onPress={
-                  () => {
-                      toggleModal('routine');
-                      setRoutineScore(0);
-                }} />
-                <ScaleAnswerModal answerTitle='Independente rosto/cabelo/dentes/barbear' onPress={() => {
-                      toggleModal('routine');
-                      setRoutineScore(5);
-                    }}/>
+              <ScaleAnswerModal
+                answerTitle="Precisa de ajuda com a higiene pessoal"
+                onPress={() => {
+                  toggleModal('routine');
+                  setRoutineScore(0);
+                }}
+              />
+              <ScaleAnswerModal
+                answerTitle="Independente rosto/cabelo/dentes/barbear"
+                onPress={() => {
+                  toggleModal('routine');
+                  setRoutineScore(5);
+                }}
+              />
             </ModalContent>
           </Modal>
 
@@ -182,19 +201,27 @@ export function BarthelIndex(): JSX.Element {
             onBackdropPress={() => setDressUpModalVisible(false)}
           >
             <ModalContent>
-                <ScaleAnswerModal answerTitle='Dependente' onPress={
-                  () => {
-                      toggleModal('dressUp');
-                      setDressUpScore(0);
-                }} />
-                <ScaleAnswerModal answerTitle='Precisa de ajuda mas consegue fazer uma parte sozinho' onPress={() => {
-                      toggleModal('dressUp');
-                      setDressUpScore(5);
-                    }}/>
-                <ScaleAnswerModal answerTitle='Independente' onPress={() => {
+              <ScaleAnswerModal
+                answerTitle="Dependente"
+                onPress={() => {
+                  toggleModal('dressUp');
+                  setDressUpScore(0);
+                }}
+              />
+              <ScaleAnswerModal
+                answerTitle="Precisa de ajuda mas consegue fazer uma parte sozinho"
+                onPress={() => {
+                  toggleModal('dressUp');
+                  setDressUpScore(5);
+                }}
+              />
+              <ScaleAnswerModal
+                answerTitle="Independente"
+                onPress={() => {
                   toggleModal('dressUp');
                   setDressUpScore(10);
-                }}/>
+                }}
+              />
             </ModalContent>
           </Modal>
 
@@ -204,21 +231,27 @@ export function BarthelIndex(): JSX.Element {
             onBackdropPress={() => setIntestineModalVisible(false)}
           >
             <ModalContent>
-                <ScaleAnswerModal answerTitle='Incontinente (necessidade de enemas)' 
+              <ScaleAnswerModal
+                answerTitle="Incontinente (necessidade de enemas)"
                 onPress={() => {
-                      toggleModal('intestine');
-                      setIntestineScore(0);
-                }} />
-                <ScaleAnswerModal answerTitle='Acidente ocasional' 
+                  toggleModal('intestine');
+                  setIntestineScore(0);
+                }}
+              />
+              <ScaleAnswerModal
+                answerTitle="Acidente ocasional"
                 onPress={() => {
-                      toggleModal('intestine');
-                      setIntestineScore(5);
-                    }}/>
-                <ScaleAnswerModal answerTitle='Continente' 
+                  toggleModal('intestine');
+                  setIntestineScore(5);
+                }}
+              />
+              <ScaleAnswerModal
+                answerTitle="Continente"
                 onPress={() => {
                   toggleModal('intestine');
                   setIntestineScore(10);
-                }}/>
+                }}
+              />
             </ModalContent>
           </Modal>
 
@@ -228,24 +261,29 @@ export function BarthelIndex(): JSX.Element {
             onBackdropPress={() => setUrinaryModalVisible(false)}
           >
             <ModalContent>
-                <ScaleAnswerModal answerTitle='Incontinente, ou cateterizado e incapaz de manejo' 
+              <ScaleAnswerModal
+                answerTitle="Incontinente, ou cateterizado e incapaz de manejo"
                 onPress={() => {
-                      toggleModal('urinary');
-                      setUrinaryScore(0);
-                }} />
-                <ScaleAnswerModal answerTitle='Acidente ocasional' 
+                  toggleModal('urinary');
+                  setUrinaryScore(0);
+                }}
+              />
+              <ScaleAnswerModal
+                answerTitle="Acidente ocasional"
                 onPress={() => {
-                      toggleModal('urinary');
-                      setUrinaryScore(5);
-                    }}/>
-                <ScaleAnswerModal answerTitle='Continente' 
+                  toggleModal('urinary');
+                  setUrinaryScore(5);
+                }}
+              />
+              <ScaleAnswerModal
+                answerTitle="Continente"
                 onPress={() => {
                   toggleModal('urinary');
                   setUrinaryScore(10);
-                }}/>
+                }}
+              />
             </ModalContent>
           </Modal>
-
         </AccordionContainer>
       </ScrollView>
     </IndexContainer>

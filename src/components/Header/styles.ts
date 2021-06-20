@@ -17,30 +17,28 @@ export const TopHeader = styled.View`
   justify-content: space-between;
 `;
 export const BottomHeader = styled.View`
-  flex: 1;
-
-  margin-top: 30px;
-
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-`;
-export const TextInput = styled.TextInput`
-  height: 50px;
-  width: 80%;
-  border-radius: 10px;
-  padding-left: 10%;
-  margin-bottom: 25px;
+
+  margin: 30px 35px 0;
+  padding: 10px 20px;
+  border-radius: 15px;
 
   background-color: ${({ theme }) => theme.colors.secondary};
+`;
+export const TextInput = styled.TextInput`
+  flex: 1;
+  margin-left: 15px;
+
   color: ${({ theme }) => theme.colors.text};
 
   font-family: ${({ theme }) => theme.fonts.primary_500};
 `;
 
 export const SearchIcon = styled.View`
-  display: none;
+  justify-content: center;
 `;
 
 export const HeaderTextContainer = styled.View`

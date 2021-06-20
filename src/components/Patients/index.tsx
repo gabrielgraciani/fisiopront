@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { TouchableWithoutFeedback, ActivityIndicator } from 'react-native';
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
@@ -8,6 +8,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { IPatient } from '../../domains/Patient';
 
 import { useAuth } from '../../hooks/auth';
+import { useSearch } from '../../hooks/search';
 
 import {
   PatientsContainer,
@@ -21,10 +22,12 @@ import AddButton from '../../assets/addButton.png';
 
 export function Patients(): JSX.Element {
   const { user } = useAuth();
+  const { search } = useSearch();
   const navigation = useNavigation();
   const theme = useTheme();
   const [patients, setPatients] = useState<IPatient[]>([]);
   const [isLoadingPatients, setIsLoadingPatients] = useState(true);
+  const [filteredPatients, setFilteredPatients] = useState<IPatient[]>([]);
 
   const dataKey = `@fisiopront:patients_user:${user.id}`;
 
@@ -49,13 +52,20 @@ export function Patients(): JSX.Element {
     AsyncStorage.setItem(dataKey, JSON.stringify(newPatientsList));
   }
 
+  useEffect(() => {
+    const newPatients = patients.filter(patient =>
+      patient.name.toLowerCase().includes(search.toLocaleLowerCase()),
+    );
+    setFilteredPatients(newPatients);
+  }, [patients, search]);
+
   return (
     <PatientsContainer>
       <MainTitle>Pacientes</MainTitle>
       {isLoadingPatients ? (
         <ActivityIndicator color={theme.colors.main} size="large" />
       ) : (
-        patients.map(patient => (
+        filteredPatients.map(patient => (
           <TouchableWithoutFeedback
             key={patient.id}
             onPress={() => navigation.navigate('Paciente', { patient })}
