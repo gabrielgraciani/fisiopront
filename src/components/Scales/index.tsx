@@ -2,10 +2,19 @@ import React from 'react';
 import { TouchableWithoutFeedback } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
+import { scales } from '../../utils/scales';
+
+import { IScale } from '../../domains/Scale';
+
 import { MainTitle, Scale, ScalesContainer, ScaleTitle } from './styles';
 
 export function Scales(): JSX.Element {
   const navigation = useNavigation();
+
+  function handleNavigateToScale(scale: IScale) {
+    navigation.navigate('Índice de Barthel', { scale });
+    return undefined;
+  }
 
   return (
     <ScalesContainer>
@@ -14,6 +23,17 @@ export function Scales(): JSX.Element {
       >
         <MainTitle>Escalas e índices</MainTitle>
       </TouchableWithoutFeedback>
+
+      {scales.map(scale => (
+        <TouchableWithoutFeedback
+          key={scale.id}
+          onPress={() => handleNavigateToScale(scale)}
+        >
+          <Scale>
+            <ScaleTitle>{scale.name}</ScaleTitle>
+          </Scale>
+        </TouchableWithoutFeedback>
+      ))}
       <TouchableWithoutFeedback>
         <Scale>
           <ScaleTitle>MOBILITY SCALE</ScaleTitle>

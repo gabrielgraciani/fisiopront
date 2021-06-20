@@ -1,289 +1,103 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { ScrollView } from 'react-native';
-import Modal from 'react-native-modal';
+import { useRoute } from '@react-navigation/native';
+import { ItemValue } from '@react-native-community/picker/typings/Picker';
 
-import { Accordion } from '../../../components/Accordion';
 import { IndexHeader } from '../../../components/IndexHeader';
-import { ScaleAnswerModal } from '../../../components/ScaleAnswerModal';
+
+import { IScale } from '../../../domains/Scale';
 
 import {
   IndexContainer,
   AccordionContainer,
-  ModalContent,
   ScoreResultContainer,
   ScoreText,
+  StyledPicker,
+  SelectContainer,
+  AccordionTitle,
+  Accordion,
 } from './styles';
 
-export function BarthelIndex(): JSX.Element {
-  const [alimentationScore, setAlimentationScore] = useState<number>(0);
-  const [bathScore, setBathScore] = useState<number>(0);
-  const [routineScore, setRoutineScore] = useState<number>(0);
-  const [dressUpScore, setDressUpScore] = useState<number>(0);
-  const [intestineScore, setIntestineScore] = useState<number>(0);
-  const [urinaryScore, setUrinaryScore] = useState<number>(0);
+interface Params {
+  scale: IScale;
+}
 
-  const [barthelScore, setBarthelScore] = useState(0);
-
-  const [isAlimentationModalVisible, setAlimentationModalVisible] =
-    useState(false);
-  const [isBathModalVisible, setBathModalVisible] = useState(false);
-  const [isRoutineModalVisible, setRoutineModalVisible] = useState(false);
-  const [isDressUpModalVisible, setDressUpModalVisible] = useState(false);
-  const [isIntestineModalVisible, setIntestineModalVisible] = useState(false);
-  const [isUrinaryModalVisible, setUrinaryModalVisible] = useState(false);
-
-  useEffect(() => {
-    setBarthelScore(
-      alimentationScore +
-        bathScore +
-        routineScore +
-        dressUpScore +
-        intestineScore +
-        urinaryScore,
-    );
-  }, [
-    alimentationScore,
-    bathScore,
-    routineScore,
-    dressUpScore,
-    intestineScore,
-    urinaryScore,
-  ]);
-
-  const toggleModal = (section: string) => {
-    if (section === 'alimentation') {
-      setAlimentationModalVisible(!isAlimentationModalVisible);
-      return;
-    }
-    if (section === 'bath') {
-      setBathModalVisible(!isBathModalVisible);
-      return;
-    }
-    if (section === 'routine') {
-      setRoutineModalVisible(!isRoutineModalVisible);
-      return;
-    }
-    if (section === 'dressUp') {
-      setDressUpModalVisible(!isDressUpModalVisible);
-      return;
-    }
-    if (section === 'intestine') {
-      setIntestineModalVisible(!isIntestineModalVisible);
-      return;
-    }
-    if (section === 'urinary') {
-      setUrinaryModalVisible(!isUrinaryModalVisible);
-    }
+interface OptionsValues {
+  [key: string]: {
+    itemValue: ItemValue;
+    itemIndex: number;
   };
+}
+
+interface HandleChangeProps {
+  itemValue: ItemValue;
+  itemIndex: number;
+  parentIndex: number;
+}
+
+export function BarthelIndex(): JSX.Element {
+  const route = useRoute();
+  const { scale } = route.params as Params;
+
+  const [score, setScore] = useState(0);
+  const [values, setValues] = useState<OptionsValues>({});
+
+  const isShowingScore = Object.keys(values).length === scale.activities.length;
+
+  function handleChange({
+    itemIndex,
+    parentIndex,
+    itemValue,
+  }: HandleChangeProps) {
+    const newValue = {
+      [parentIndex]: {
+        itemValue,
+        itemIndex,
+      },
+    };
+
+    const itemValueNumber = Number(itemValue);
+
+    setValues({ ...values, ...newValue });
+    setScore(score + itemValueNumber);
+  }
 
   return (
     <IndexContainer>
       <ScrollView>
-        <IndexHeader indexName="Índice de Barthel" />
+        <IndexHeader indexName={scale.name} />
         <AccordionContainer>
-          <Accordion
-            title="Alimentação"
-            onPress={() => toggleModal('alimentation')}
-            value={alimentationScore}
-          />
-          <Accordion
-            title="Banho"
-            onPress={() => toggleModal('bath')}
-            value={bathScore}
-          />
-          <Accordion
-            title="Atividades rotineiras"
-            onPress={() => toggleModal('routine')}
-            value={routineScore}
-          />
-          <Accordion
-            title="Vestir-se"
-            onPress={() => toggleModal('dressUp')}
-            value={dressUpScore}
-          />
-          <Accordion
-            title="Intestino"
-            onPress={() => toggleModal('intestine')}
-            value={intestineScore}
-          />
-          <Accordion
-            title="Sistema urinário"
-            onPress={() => toggleModal('urinary')}
-            value={urinaryScore}
-          />
+          {scale.activities.map((activity, index) => (
+            <Accordion key={activity.id}>
+              <AccordionTitle>{activity.question}</AccordionTitle>
+              <SelectContainer>
+                <StyledPicker
+                  onValueChange={(itemValue, itemIndex) => {
+                    handleChange({
+                      itemValue,
+                      itemIndex,
+                      parentIndex: index,
+                    });
+                  }}
+                  selectedValue={values[index]?.itemValue}
+                >
+                  <StyledPicker.Item label="Selecione uma opção" value="" />
+                  {activity.options.map(option => (
+                    <StyledPicker.Item
+                      label={option.option}
+                      value={option.value}
+                      key={option.id}
+                    />
+                  ))}
+                </StyledPicker>
+              </SelectContainer>
+            </Accordion>
+          ))}
 
           <ScoreResultContainer>
             <ScoreText>SCORE</ScoreText>
-            <ScoreText>{barthelScore >= 0 ? barthelScore : 0}</ScoreText>
+            <ScoreText>{isShowingScore ? score : 0}</ScoreText>
           </ScoreResultContainer>
-
-          {/* MODAIS */}
-          <Modal
-            isVisible={isAlimentationModalVisible}
-            style={{ margin: 0 }}
-            onBackdropPress={() => setAlimentationModalVisible(false)}
-          >
-            <ModalContent>
-              <ScaleAnswerModal
-                answerTitle="Incapacitado"
-                onPress={() => {
-                  toggleModal('alimentation');
-                  setAlimentationScore(0);
-                }}
-              />
-              <ScaleAnswerModal
-                answerTitle="Precisa de ajuda para cortar, passar manteiga, etc, ou dieta
-                  modificada"
-                onPress={() => {
-                  toggleModal('alimentation');
-                  setAlimentationScore(5);
-                }}
-              />
-              <ScaleAnswerModal
-                answerTitle="Independente"
-                onPress={() => {
-                  toggleModal('alimentation');
-                  setAlimentationScore(10);
-                }}
-              />
-            </ModalContent>
-          </Modal>
-
-          <Modal
-            isVisible={isBathModalVisible}
-            style={{ margin: 0 }}
-            onBackdropPress={() => setBathModalVisible(false)}
-          >
-            <ModalContent>
-              <ScaleAnswerModal
-                answerTitle="Dependente"
-                onPress={() => {
-                  toggleModal('bath');
-                  setBathScore(0);
-                }}
-              />
-              <ScaleAnswerModal
-                answerTitle="Independente (ou no chuveiro)"
-                onPress={() => {
-                  toggleModal('bath');
-                  setBathScore(5);
-                }}
-              />
-            </ModalContent>
-          </Modal>
-
-          <Modal
-            isVisible={isRoutineModalVisible}
-            style={{ margin: 0 }}
-            onBackdropPress={() => setRoutineModalVisible(false)}
-          >
-            <ModalContent>
-              <ScaleAnswerModal
-                answerTitle="Precisa de ajuda com a higiene pessoal"
-                onPress={() => {
-                  toggleModal('routine');
-                  setRoutineScore(0);
-                }}
-              />
-              <ScaleAnswerModal
-                answerTitle="Independente rosto/cabelo/dentes/barbear"
-                onPress={() => {
-                  toggleModal('routine');
-                  setRoutineScore(5);
-                }}
-              />
-            </ModalContent>
-          </Modal>
-
-          <Modal
-            isVisible={isDressUpModalVisible}
-            style={{ margin: 0 }}
-            onBackdropPress={() => setDressUpModalVisible(false)}
-          >
-            <ModalContent>
-              <ScaleAnswerModal
-                answerTitle="Dependente"
-                onPress={() => {
-                  toggleModal('dressUp');
-                  setDressUpScore(0);
-                }}
-              />
-              <ScaleAnswerModal
-                answerTitle="Precisa de ajuda mas consegue fazer uma parte sozinho"
-                onPress={() => {
-                  toggleModal('dressUp');
-                  setDressUpScore(5);
-                }}
-              />
-              <ScaleAnswerModal
-                answerTitle="Independente"
-                onPress={() => {
-                  toggleModal('dressUp');
-                  setDressUpScore(10);
-                }}
-              />
-            </ModalContent>
-          </Modal>
-
-          <Modal
-            isVisible={isIntestineModalVisible}
-            style={{ margin: 0 }}
-            onBackdropPress={() => setIntestineModalVisible(false)}
-          >
-            <ModalContent>
-              <ScaleAnswerModal
-                answerTitle="Incontinente (necessidade de enemas)"
-                onPress={() => {
-                  toggleModal('intestine');
-                  setIntestineScore(0);
-                }}
-              />
-              <ScaleAnswerModal
-                answerTitle="Acidente ocasional"
-                onPress={() => {
-                  toggleModal('intestine');
-                  setIntestineScore(5);
-                }}
-              />
-              <ScaleAnswerModal
-                answerTitle="Continente"
-                onPress={() => {
-                  toggleModal('intestine');
-                  setIntestineScore(10);
-                }}
-              />
-            </ModalContent>
-          </Modal>
-
-          <Modal
-            isVisible={isUrinaryModalVisible}
-            style={{ margin: 0 }}
-            onBackdropPress={() => setUrinaryModalVisible(false)}
-          >
-            <ModalContent>
-              <ScaleAnswerModal
-                answerTitle="Incontinente, ou cateterizado e incapaz de manejo"
-                onPress={() => {
-                  toggleModal('urinary');
-                  setUrinaryScore(0);
-                }}
-              />
-              <ScaleAnswerModal
-                answerTitle="Acidente ocasional"
-                onPress={() => {
-                  toggleModal('urinary');
-                  setUrinaryScore(5);
-                }}
-              />
-              <ScaleAnswerModal
-                answerTitle="Continente"
-                onPress={() => {
-                  toggleModal('urinary');
-                  setUrinaryScore(10);
-                }}
-              />
-            </ModalContent>
-          </Modal>
         </AccordionContainer>
       </ScrollView>
     </IndexContainer>
