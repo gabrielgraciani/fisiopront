@@ -1,4 +1,5 @@
 import React, { ReactElement } from 'react';
+import { NavigationContainer } from '@react-navigation/native';
 import {
   useFonts,
   Ubuntu_300Light,
@@ -32,7 +33,9 @@ export default function App(): ReactElement {
   return (
     <ThemeProvider theme={theme}>
       <AuthProvider>
-        <Routes />
+        <NavigationContainer>
+          <Routes />
+        </NavigationContainer>
       </AuthProvider>
     </ThemeProvider>
   );
