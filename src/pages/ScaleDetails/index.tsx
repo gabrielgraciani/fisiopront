@@ -3,9 +3,9 @@ import { ScrollView } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 import { ItemValue } from '@react-native-community/picker/typings/Picker';
 
-import { IndexHeader } from '../../../components/IndexHeader';
+import { IndexHeader } from '../../components/IndexHeader';
 
-import { IScale } from '../../../domains/Scale';
+import { IScale } from '../../domains/Scale';
 
 import {
   IndexContainer,
@@ -35,14 +35,15 @@ interface HandleChangeProps {
   parentIndex: number;
 }
 
-export function BarthelIndex(): JSX.Element {
+export function ScaleDetails(): JSX.Element {
   const route = useRoute();
   const { scale } = route.params as Params;
 
   const [score, setScore] = useState(0);
-  const [values, setValues] = useState<OptionsValues>({});
+  const [selectedValues, setSelectedValues] = useState<OptionsValues>({});
 
-  const isShowingScore = Object.keys(values).length === scale.activities.length;
+  const isShowingScore =
+    Object.keys(selectedValues).length === scale.activities.length;
 
   function handleChange({
     itemIndex,
@@ -58,7 +59,7 @@ export function BarthelIndex(): JSX.Element {
 
     const itemValueNumber = Number(itemValue);
 
-    setValues({ ...values, ...newValue });
+    setSelectedValues({ ...selectedValues, ...newValue });
     setScore(score + itemValueNumber);
   }
 
@@ -79,7 +80,7 @@ export function BarthelIndex(): JSX.Element {
                       parentIndex: index,
                     });
                   }}
-                  selectedValue={values[index]?.itemValue}
+                  selectedValue={selectedValues[index]?.itemValue}
                 >
                   <StyledPicker.Item label="Selecione uma opção" value="" />
                   {activity.options.map(option => (

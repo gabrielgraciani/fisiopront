@@ -7,7 +7,7 @@ import { CreatePatient } from '../pages/CreatePatient';
 import { IndexesAndScales } from '../pages/IndexesAndScales';
 import { Patient } from '../pages/Patient';
 import { Splash } from '../pages/Splash';
-import { BarthelIndex } from '../pages/Indexes/BarthelIndex';
+import { ScaleDetails } from '../pages/ScaleDetails';
 
 const { Navigator, Screen } = createStackNavigator();
 
@@ -19,7 +19,7 @@ export function StackRoutes(): JSX.Element {
       <Screen name="CreatePatient" component={CreatePatient} />
       <Screen name="Escalas e índices" component={IndexesAndScales} />
       <Screen name="Paciente" component={Patient} />
-      <Screen name="Índice de Barthel" component={BarthelIndex} />
+      <Screen name="Scale Details" component={ScaleDetails} />
     </Navigator>
   );
 }
