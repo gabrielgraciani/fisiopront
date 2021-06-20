@@ -10,7 +10,8 @@ import {
 import AppLoading from 'expo-app-loading';
 import { ThemeProvider } from 'styled-components';
 
-import { AuthProvider, useAuth } from './src/hooks/auth';
+import { useAuth } from './src/hooks/auth';
+import { AppProvider } from './src/hooks';
 
 import theme from './src/styles/theme';
 
@@ -32,11 +33,11 @@ export default function App(): ReactElement {
 
   return (
     <ThemeProvider theme={theme}>
-      <AuthProvider>
+      <AppProvider>
         <NavigationContainer>
           <Routes />
         </NavigationContainer>
-      </AuthProvider>
+      </AppProvider>
     </ThemeProvider>
   );
 }

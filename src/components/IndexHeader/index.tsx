@@ -1,22 +1,27 @@
-import { AntDesign } from '@expo/vector-icons'
-import { useNavigation } from '@react-navigation/native'
-import React from 'react'
-import { TouchableWithoutFeedback } from 'react-native'
+import { AntDesign } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
+import { useTheme } from 'styled-components';
+import React from 'react';
+import { TouchableWithoutFeedback } from 'react-native';
 
-import { IndexName, BackButton, Header } from './styles'
+import { IndexName, BackButton, Header } from './styles';
 
-export function IndexHeader( { indexName }: any ) {
+interface IndexHeaderProps {
+  indexName: string;
+}
 
-    const navigation = useNavigation()
+export function IndexHeader({ indexName }: IndexHeaderProps): JSX.Element {
+  const navigation = useNavigation();
+  const theme = useTheme();
 
-    return (
-        <Header>
-            <IndexName>{ indexName }</IndexName>
-                <TouchableWithoutFeedback onPress={() => navigation.goBack()}>
-                    <BackButton>
-                        <AntDesign name="home" size={24} color="#fafafa" />
-                    </BackButton>
-                </TouchableWithoutFeedback>
-        </Header>
-    )
+  return (
+    <Header>
+      <IndexName>{indexName}</IndexName>
+      <TouchableWithoutFeedback onPress={() => navigation.goBack()}>
+        <BackButton>
+          <AntDesign name="home" size={24} color={theme.colors.text} />
+        </BackButton>
+      </TouchableWithoutFeedback>
+    </Header>
+  );
 }

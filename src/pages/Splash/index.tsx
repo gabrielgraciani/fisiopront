@@ -10,6 +10,7 @@ import Animated, {
   runOnJS,
 } from 'react-native-reanimated';
 
+import { RFValue } from 'react-native-responsive-fontsize';
 import Logo from '../../assets/logo.svg';
 
 import { Container, Title, Teste, SubTitle } from './styles';
@@ -70,7 +71,7 @@ export function Splash(): JSX.Element {
 
   return (
     <Container>
-      <Logo width={185} height={185} />
+      <Logo width={`${RFValue(170)}px`} height={`${RFValue(170)}px`} />
 
       <Teste>
         <Animated.View style={[titleStyle, { position: 'absolute' }]}>

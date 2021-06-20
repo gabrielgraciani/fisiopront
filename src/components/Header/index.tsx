@@ -16,11 +16,13 @@ import {
 } from './styles';
 
 import { useAuth } from '../../hooks/auth';
+import { useSearch } from '../../hooks/search';
 
 export function Header(): JSX.Element {
   const { user } = useAuth();
+  const { setSearch, search } = useSearch();
   const theme = useTheme();
-  const userName = user.name.split(' ')[0]; // Pega só a primeira palavra do nome
+  const userName = user.name.split(' ')[0];
   const navigation = useNavigation();
 
   function handleOpenDrawer() {
@@ -42,11 +44,13 @@ export function Header(): JSX.Element {
       </TopHeader>
       <BottomHeader>
         <SearchIcon>
-          <FontAwesome name="search" size={24} color={theme.colors.secondary} />
+          <FontAwesome name="search" size={24} color={theme.colors.shape} />
         </SearchIcon>
         <TextInput
           placeholder="Procurar"
-          placeholderTextColor={theme.colors.secondary}
+          placeholderTextColor={theme.colors.text_opacity65}
+          onChangeText={setSearch}
+          value={search}
         />
       </BottomHeader>
     </HeaderContainer>
