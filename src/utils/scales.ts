@@ -90,4 +90,68 @@ export const scales: IScale[] = [
       },
     ],
   },
+  {
+    id: '2',
+    name: 'Escala de Hacor',
+    activities: [
+      {
+        id: '1-1',
+        question: 'Frequência cardíaca',
+        key: 'heartRate',
+        options: [
+          { id: '1-1-1', option: '≤ 120', value: 0 },
+          {
+            id: '1-1-2',
+            option: '≥ 121',
+            value: 5,
+          },
+        ],
+      },
+      {
+        id: '1-2',
+        question: 'pH',
+        key: 'ph',
+        options: [
+          { id: '1-2-1', option: '≥	7.35', value: 0 },
+          { id: '1-2-2', option: '7.30 - 7.34', value: 2 },
+          { id: '1-2-3', option: '7.25 - 7.29', value: 3 },
+          { id: '1-2-4', option: '< 7.25', value: 4 },
+        ],
+      },
+      {
+        id: '1-3',
+        question: 'Glasgow',
+        key: 'glasgow',
+        options: [
+          { id: '1-3-1', option: '15', value: 0 },
+          { id: '1-3-2', option: '13 - 14', value: 2 },
+          { id: '1-3-3', option: '11 - 12', value: 5 },
+          { id: '1-3-4', option: '≥ 10', value: 10 },
+        ],
+      },
+      {
+        id: '1-4',
+        question: 'Pa02/Fi02',
+        key: 'pa02/fi02',
+        options: [
+          { id: '1-4-1', option: '≥ 201', value: 0 },
+          { id: '1-4-2', option: '176 - 200', value: 2 },
+          { id: '1-4-3', option: '151 - 175', value: 5 },
+          { id: '1-4-4', option: '≤ 100', value: 10 },
+        ],
+      },
+      {
+        id: '1-5',
+        question: 'Frequência respiratória',
+        key: 'breathRate',
+        options: [
+          { id: '1-5-1', option: '≤ 30', value: 0 },
+          { id: '1-5-2', option: '31 - 35', value: 1 },
+          { id: '1-5-3', option: '36 - 40', value: 2 },
+          { id: '1-5-3', option: '41 - 45', value: 3 },
+          { id: '1-5-3', option: '≥	40', value: 4 },
+        ],
+      },
+    ],
+  },
 ];
