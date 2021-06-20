@@ -1,4 +1,5 @@
 import styled from 'styled-components/native';
+import { Picker } from '@react-native-community/picker';
 
 export const IndexContainer = styled.View``;
 
@@ -10,37 +11,6 @@ export const AccordionContainer = styled.View`
   display: flex;
   flex-direction: column;
 `;
-
-export const ModalContent = styled.View`
-  margin-top: auto;
-  width: 100%;
-  min-height: 200px;
-
-  background-color: ${({ theme }) => theme.colors.shape};
-  border-radius: 25px;
-
-  padding-top: 25px;
-  padding-bottom: 20px;
-`;
-
-export const Answer = styled.View`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-
-  margin-right: 30px;
-  margin-left: 30px;
-  margin-bottom: 10px;
-`;
-
-export const AnswerTitle = styled.Text`
-  font-size: 24px;
-  color: ${({ theme }) => theme.colors.main};
-  width: 80%;
-`;
-
-export const SelectAnswerButton = styled.View``;
 
 export const ScoreResultContainer = styled.View`
   display: flex;
@@ -58,4 +28,28 @@ export const ScoreResultContainer = styled.View`
 export const ScoreText = styled.Text`
   color: ${({ theme }) => theme.colors.shape};
   font-size: 24px;
+`;
+
+export const SelectContainer = styled.View`
+  border-radius: 15px;
+  overflow: hidden;
+  background: ${({ theme }) => theme.colors.main};
+  padding: 0 15px;
+`;
+
+export const StyledPicker = styled(Picker)`
+  color: ${({ theme }) => theme.colors.shape};
+  font-family: ${({ theme }) => theme.fonts.primary_500};
+`;
+
+export const AccordionTitle = styled.Text`
+  color: ${({ theme }) => theme.colors.primary};
+  font-size: 24px;
+  font-family: ${({ theme }) => theme.fonts.primary_500};
+
+  margin-bottom: 15px;
+`;
+
+export const Accordion = styled.View`
+  margin-bottom: 20px;
 `;

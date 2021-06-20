@@ -30,4 +30,5 @@ export const ScaleTitle = styled.Text`
 
   font-size: 20px;
   font-family: ${({ theme }) => theme.fonts.primary_500};
+  text-transform: uppercase;
 `;
