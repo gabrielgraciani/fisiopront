@@ -3,6 +3,7 @@ import { TouchableWithoutFeedback } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { AntDesign } from '@expo/vector-icons';
 import { useTheme } from 'styled-components';
+import { Scales } from '../../components/Scales';
 
 import { IPatient } from '../../domains/Patient';
 
@@ -47,6 +48,7 @@ export function Patient(): JSX.Element {
           </Data>
         </DataContainer>
       </Main>
+      <Scales patientScales={patient.scales} />
     </Container>
   );
 }

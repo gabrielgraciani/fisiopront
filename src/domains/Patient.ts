@@ -3,5 +3,5 @@ export interface IPatient {
   name: string;
   reason: string;
   observations?: string;
-  scales?: number[];
+  scales?: string[];
 }

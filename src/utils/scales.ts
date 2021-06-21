@@ -154,4 +154,63 @@ export const scales: IScale[] = [
       },
     ],
   },
+  {
+    id: '3',
+    name: 'Mobility Scale',
+    activities: [
+      {
+        id: '3-1',
+        question: 'Escala de mobilidade em UTI',
+        key: 'mobility',
+        options: [
+          { id: '3-1-1', option: 'Nada (deitado no leito)', value: 0 },
+          {
+            id: '3-1-2',
+            option: 'Sentado no leito, exercícios no leito',
+            value: 1,
+          },
+          {
+            id: '3-1-3',
+            option:
+              'Transferido passivamente para a cadeira (sem ortostatismo)',
+            value: 2,
+          },
+          { id: '3-1-4', option: 'Sentado a beira do leito', value: 3 },
+          {
+            id: '3-1-5',
+            option: 'Transferência do leito para a cadeira',
+            value: 4,
+          },
+          { id: '3-1-6', option: 'Ortostatismo', value: 5 },
+          {
+            id: '3-1-7',
+            option: 'Marcha estacionária (á beira do leito)',
+            value: 6,
+          },
+          {
+            id: '3-1-8',
+            option: 'Deambular com auxílio de 2 ou mais pessoas',
+            value: 7,
+          },
+          {
+            id: '3-1-9',
+            option: 'Deambular com auxílio de 1 pessoa',
+            value: 8,
+          },
+          {
+            id: '3-1-10',
+            option:
+              'Deambulação independente com auxílio de um dispositivo de marcha',
+            value: 9,
+          },
+          {
+            id: '3-1-11',
+            option:
+              'Deambulação independente sem auxílio de um dispositivo de marcha',
+            value: 10,
+          },
+        ],
+      },
+    ],
+  },
 ];

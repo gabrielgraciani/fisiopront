@@ -41,11 +41,13 @@ export const HomeButton = styled.View`
 export const Main = styled.View`
   margin-left: 30px;
   margin-right: 30px;
-  margin-top: 30px;
+  margin-top: 15px;
 `;
 
 export const DataContainerTitle = styled.Text`
   font-size: 30px;
+  margin-top: 15px;
+  margin-bottom: 5px;
   color: ${({ theme }) => theme.colors.primary};
   font-family: ${({ theme }) => theme.fonts.primary_500};
 `;
